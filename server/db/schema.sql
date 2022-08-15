@@ -1,0 +1,63 @@
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS user_product_relation CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS product_category CASCADE;
+DROP TABLE IF EXISTS sales CASCADE;
+DROP TABLE IF EXISTS featured_products CASCADE;
+
+-- have to copy and paste into psql one by one for some reason!
+
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE sales(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  percentage INTEGER NOT NULL, 
+  date_begin DATE NOT NULL,
+  date_end DATE NOT NULL
+);
+
+CREATE TABLE products(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  sale_id INTEGER REFERENCES sales(id) ON DELETE CASCADE,
+  date_dropped TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  views INTEGER NOT NULL DEFAULT 0,
+  buys INTEGER NOT NULL DEFAULT 0,
+  stock INTEGER NOT NULL
+);
+
+CREATE TABLE user_product_relation(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+  status VARCHAR(255) DEFAULT NULL,
+  product_quantity INTEGER DEFAULT 0
+);
+
+CREATE TABLE categories(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  number_of_clicks INTEGER DEFAULT 0
+);
+
+CREATE TABLE product_category(
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+);
+
+CREATE TABLE featured_products(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  product_1_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+  product_2_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+  product_3_id INTEGER REFERENCES products(id) ON DELETE CASCADE
+);

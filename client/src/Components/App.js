@@ -12,7 +12,8 @@ function App() {
   const [state, setState] = useState({
     user: {},
     product: {},
-    signingIn: false,
+    owner: false,
+    authorized: false,
   });
 
   useEffect(() => {
@@ -21,14 +22,14 @@ function App() {
 
   return (
     <Router>
-      <Nav />
+      <Nav state={state}/>
       <div className="App">
         <Routes>
           <Route path="/home" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/store" element={<Store />}/>
-          <Route path="/owner" element={<OwnerDashboard />}/>
+          <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>
           <Route path="*" element={<ErrorPage />}/>
         </Routes>
       </div>

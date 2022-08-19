@@ -12,9 +12,10 @@ app.use(urlencoded({extended: false}));
 app.use(cors());
 
 // import routers
-
+const userRouter = require('./routes/user-router.js');
 
 // use routers
+app.use('/api/users', userRouter);
 
 
 app.listen(PORT, () => {

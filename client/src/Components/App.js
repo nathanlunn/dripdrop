@@ -22,11 +22,11 @@ function App() {
 
   return (
     <Router>
-      <Nav state={state}/>
+      <Nav state={state} setState={setState}/>
       <div className="App">
         <Routes>
           <Route path="/home" element={<Home />}/>
-          <Route path="/login" element={<Login />}/>
+          <Route path="/login" element={<Login setState={setState}/>}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/store" element={<Store />}/>
           <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>

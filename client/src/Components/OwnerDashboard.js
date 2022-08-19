@@ -5,14 +5,16 @@ function OwnerDashboard({state}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      navigate('/');
-    }, 2000)
+    if (!state.user.owner && !state.user.authorized) {
+      setTimeout(() => {
+        navigate('/');
+      }, 2000)
+    }
   }, [])
 
   return (
     <div>
-      {(state.user.owner || state.owner.authorized) ? (
+      {(state.user.owner || state.user.authorized) ? (
         <div>
 
         </div>

@@ -7,6 +7,7 @@ const db = require('../db/db.js');
 router.post('/', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.log(`email: ${email}, password: ${password}`);
 
   db.query('SELECT * FROM users WHERE email = $1 AND password = $2;', [email, password])
   .then(data => {

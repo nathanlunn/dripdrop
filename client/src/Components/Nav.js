@@ -6,6 +6,7 @@ export default function Nav({state, setState}) {
 
   const logout = () => {
     setState(prev => ({...prev, user: {} }));
+    navigate('/login');
   }
 
   return (

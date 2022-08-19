@@ -12,8 +12,6 @@ function App() {
   const [state, setState] = useState({
     user: {},
     product: {},
-    owner: false,
-    authorized: false,
   });
 
   useEffect(() => {

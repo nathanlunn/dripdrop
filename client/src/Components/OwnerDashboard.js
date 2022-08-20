@@ -16,7 +16,7 @@ function OwnerDashboard({state}) {
     <div>
       {(state.user.owner || state.user.authorized) ? (
         <div>
-
+          owner
         </div>
       ) : (
         <div>

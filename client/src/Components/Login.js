@@ -14,6 +14,10 @@ export default function Login({setState}) {
       const user = res.data.rows[0];
       if (user) {
         setState(prev => ({...prev, user: user}));
+        if(user.owner || user.authorized) {
+          navigate('/owner');
+          return
+        }
         navigate('/store');
         return;
       }
@@ -42,6 +46,7 @@ export default function Login({setState}) {
         onChange={e => setPassword(e.target.value)}
         required
         type="password"
+        onKeyPress={e => e.key === 'Enter' && login()}
       />
       <button onClick={login}>Login</button>
       <br></br>

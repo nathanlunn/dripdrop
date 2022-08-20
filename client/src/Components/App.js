@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />}/>
           <Route path="/login" element={<Login setState={setState}/>}/>
-          <Route path="/register" element={<Register />}/>
+          <Route path="/register" element={<Register setState={setState}/>}/>
           <Route path="/store" element={<Store />}/>
           <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>
           <Route path="*" element={<ErrorPage />}/>

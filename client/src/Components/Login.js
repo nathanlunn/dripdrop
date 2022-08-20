@@ -11,6 +11,10 @@ export default function Login({setState}) {
   const login = () => {
     axios.post('http://localhost:8080/api/users', {email, password})
     .then(res => {
+      if (typeof(res.data) === 'string') {
+        setErrorMessage(res.data);
+        return;
+      }
       const user = res.data.rows[0];
       if (user) {
         setState(prev => ({...prev, user: user}));

@@ -58,4 +58,11 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// GET request to '/api/users/logout' to clear req.session.user
+router.get('/logout', (req, res) => {
+  req.session.user = null;
+  console.log(req.session.user);
+  res.send();
+})
+
 module.exports = router;

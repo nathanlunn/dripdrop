@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:8080/api/users')
     .then(res => {
-      console.log(res.data);
       if(res.data.loggedIn) {
         setState(prev => ({...prev, user: res.data.user}));
       }

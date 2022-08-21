@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Nav({state, setState}) {
   const navigate = useNavigate();
 
   const logout = () => {
-    setState(prev => ({...prev, user: {} }));
-    navigate('/login');
+    axios.get('http://localhost:8080/api/users/logout')
+    .then(res => {
+      setState(prev => ({...prev, user: {} }));
+      navigate('/login');
+    })
+    .catch(err => {
+      console.error(err.message);
+    })
   }
 
   return (

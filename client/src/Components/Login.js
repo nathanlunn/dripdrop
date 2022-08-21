@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({setState}) {
+export default function Login({state, setState}) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+
+  }, [])
 
   const login = () => {
     axios.post('http://localhost:8080/api/users', {email, password})

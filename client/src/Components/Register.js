@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-function Register({setState}) {
+function Register({state, setState}) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

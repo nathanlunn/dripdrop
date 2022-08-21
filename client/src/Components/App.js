@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; 
+import axios from 'axios';
 import Home from './Home';
 import Nav from './Nav';
 import Login from './Login';
@@ -9,13 +10,24 @@ import OwnerDashboard from './OwnerDashboard';
 import ErrorPage from './ErrorPage';
 
 function App() {
+  axios.defaults.withCredentials = true;
+
   const [state, setState] = useState({
     user: {},
     product: {},
   });
 
   useEffect(() => {
-
+    axios.get('http://localhost:8080/api/users')
+    .then(res => {
+      console.log(res.data);
+      if(res.data.loggedIn) {
+        setState(prev => ({...prev, user: res.data.user}));
+      }
+    })
+    .catch(err => {
+      console.error(err.message);
+    })
   }, []);
 
   return (
@@ -24,8 +36,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/home" element={<Home />}/>
-          <Route path="/login" element={<Login setState={setState}/>}/>
-          <Route path="/register" element={<Register setState={setState}/>}/>
+          <Route path="/login" element={<Login state={state} setState={setState}/>}/>
+          <Route path="/register" element={<Register state={state} setState={setState}/>}/>
           <Route path="/store" element={<Store />}/>
           <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>
           <Route path="*" element={<ErrorPage />}/>

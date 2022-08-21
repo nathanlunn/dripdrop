@@ -4,7 +4,15 @@ const router = express.Router();
 const db = require('../db/db.js');
 const bcrypt = require('bcrypt');
 
-// POST request to '/api/users/ for all users
+// GET request to '/api/users/' to check if there is a session
+router.get('/', (req, res) => {
+  if(req.session.user) {
+    return res.send({loggedIn: true, user: req.session.user});
+  }
+  res.send({loggedIn: false});
+})
+
+// POST request to '/api/users/' for all users
 router.post('/', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -17,6 +25,8 @@ router.post('/', (req, res) => {
     }
     const match = await bcrypt.compare(password, result.rows[0].password)
     if (match) {
+      req.session.user = result.rows[0];
+      console.log(req.session.user);
       return res.send(result);
     }
     res.send('This Password Does Not Match this Email');

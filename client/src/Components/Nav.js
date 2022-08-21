@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import logo from '../img/dripCharcoal.png';
+import './styles/Nav.scss';
 
 export default function Nav({state, setState}) {
   const navigate = useNavigate();
@@ -17,13 +19,16 @@ export default function Nav({state, setState}) {
   }
 
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/store">Store</Link>
-      {!state.user.name && <Link to="/login">Login</Link>}
-      {!state.user.name && <Link to="/register">Register</Link>}
-      {state.user.name && <button onClick={logout}>Logout</button>}
-      {(state.user.owner || state.user.authorized) && <Link to="/owner">Owners Dashboard</Link>}
+    <div className="nav">
+      <img className="nav__logo" src={logo}/>
+      <div className="nav__linkDiv">
+        <Link className="nav__button" to="/">Home</Link>
+        <Link className="nav__button" to="/store">Store</Link>
+        {!state.user.name && <Link className="nav__button" to="/login">Login</Link>}
+        {!state.user.name && <Link className="nav__button" to="/register">Register</Link>}
+        {state.user.name && <button className="nav__button" onClick={logout}>Logout</button>}
+        {(state.user.owner || state.user.authorized) && <Link className="nav__button" to="/owner">Owners Dashboard</Link>}
+      </div>
     </div>
   )
 }

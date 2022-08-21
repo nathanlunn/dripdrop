@@ -8,6 +8,7 @@ import Register from './Register';
 import Store from './Store';
 import OwnerDashboard from './OwnerDashboard';
 import ErrorPage from './ErrorPage';
+import './styles/App.scss';
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -34,7 +35,7 @@ function App() {
       <Nav state={state} setState={setState}/>
       <div className="App">
         <Routes>
-          <Route path="/home" element={<Home />}/>
+          <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login state={state} setState={setState}/>}/>
           <Route path="/register" element={<Register state={state} setState={setState}/>}/>
           <Route path="/store" element={<Store />}/>

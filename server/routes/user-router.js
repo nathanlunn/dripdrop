@@ -5,27 +5,22 @@ const db = require('../db/db.js');
 const bcrypt = require('bcrypt');
 
 // POST request to '/api/users/ for all users
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  try {
-    db.query('SELECT * FROM users WHERE email = $1;', [email])
-  .then(data => {
-    if (data.rows.length < 1) {
+  db.query('SELECT * FROM users WHERE email = $1;', [email], async (err, result) => {
+    if (err) {
+      throw err;
+    }
+    if (result.rows.length < 1) {
       return res.send('That Email Does Not Belong to a User');
     }
-    const match = await bcrypt.compare(password, data.rows[0].password)
-    console.log(match);
-    //   return res.send(data);
-     
-    //  res.send('This Password Does Not Match this Email');
+    const match = await bcrypt.compare(password, result.rows[0].password)
+    if (match) {
+      return res.send(result);
+    }
+    res.send('This Password Does Not Match this Email');
   })
-  .catch(err => {
-    console.error(err.message);
-  })
-  } catch {
-    res.status(500).send();
-  }
 });
 
 // POST request to '/api/users/register'

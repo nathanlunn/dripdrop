@@ -1,0 +1,43 @@
+@import './Variables.scss';
+
+.home {
+
+  .home__header {
+    display: flex;
+
+    .home__headerLeft {
+      display: flex;
+      flex-direction: column;
+      
+      .home__title {
+        font-family: 'Aboreto', cursive;
+        font-size: 4rem;
+        margin: 2rem;
+        max-width: 600px;
+      }
+
+      .home__storeLink {
+        text-decoration: none;
+        color: $englishViolet;
+        align-self: center;
+        font-size: 3rem;
+        margin-top: 4rem;
+        padding: 1.5rem;
+        font-family: 'Aboreto', cursive;
+        border: solid 4px $englishViolet;
+        border-radius: 50px;
+      }
+      .home__storeLink:hover {
+        cursor: pointer;
+      }
+      .home__storeLink:active {
+        box-shadow: 0 0 20px;
+        font-size: 3.2rem;
+      }
+    }
+
+    .home__logo {
+      height: 30rem;
+    }
+  }
+}

@@ -13,15 +13,18 @@
     height: 100%;
     min-width: 125px;
     max-width: 165px;
+    background-color: $mistyRose;
   }
   .nav__linkDiv {
     display: flex;
     align-items: center;
+    background-color: $mistyRose;
   }
   .nav__button {
     font-size: 1.5rem;
     color: $charcoal;
     text-decoration: none;
     margin: .3rem;
+    background-color: $mistyRose;
   }
 }

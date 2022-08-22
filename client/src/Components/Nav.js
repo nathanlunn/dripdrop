@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import logo from '../img/dripCharcoal.png';
+import dripName from '../img/dripCharcoal.png';
 import './styles/Nav.scss';
 
 export default function Nav({state, setState}) {
@@ -20,7 +20,7 @@ export default function Nav({state, setState}) {
 
   return (
     <div className="nav">
-      <img className="nav__logo" src={logo}/>
+      <img className="nav__logo" src={dripName}/>
       <div className="nav__linkDiv">
         <Link className="nav__button" to="/">Home</Link>
         <Link className="nav__button" to="/store">Store</Link>

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import './styles/Register.scss';
 
 function Register({state, setState}) {
   const [name, setName] = useState('');
@@ -26,10 +27,12 @@ function Register({state, setState}) {
   }
 
   return (
-    <div>
+    <div className="register">
       {errorMessage && <h4>{errorMessage}</h4>}
-      <h2>Register</h2>
+      <h2 className='register__title'>Register</h2>
+      <label  className='register__label' for='name'>Name:</label>
       <input
+        className='register__input'
         placeholder="Name"
         name="name"
         value={name}
@@ -37,7 +40,9 @@ function Register({state, setState}) {
         onChange={e => setName(e.target.value)}
         required
       />
+      <label  className='register__label' for='email'>Email:</label>
       <input
+        className='register__input'
         placeholder="Email"
         name="email"
         value={email}
@@ -45,7 +50,9 @@ function Register({state, setState}) {
         onChange={e => {setEmail(e.target.value)}}
         required
       />
+      <label  className='register__label' for='password'>Password:</label>
       <input
+        className='register__input'
         placeholder="Password"
         name="password"
         value={password}
@@ -54,9 +61,9 @@ function Register({state, setState}) {
         required
         onKeyPress={e => e.key === 'Enter' && register()}
       />
-      <button onClick={register}>Sign Up</button>
-      <h4>Already Have an Account?</h4>
-      <button onClick={() => {navigate('/login')}}>Login</button>
+      <button className='register__button register__button--confirm' onClick={register}>Sign Up</button>
+      <h4 className='register__alternative'>Already Have an Account?</h4>
+      <button className='register__button register__button--login' onClick={() => {navigate('/login')}}>Login</button>
     </div>
   );
 }

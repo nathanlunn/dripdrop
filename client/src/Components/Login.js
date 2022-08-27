@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './styles/Login.scss';
 
 export default function Login({state, setState}) {
   const navigate = useNavigate();
@@ -36,10 +37,12 @@ export default function Login({state, setState}) {
     })
   };
   return(
-    <div>
+    <div className="login">
       {errorMessage && <h3>{errorMessage}</h3>}
-      <h2>Login</h2>
+      <h2 className="login__title">Login</h2>
+      <label className='login__label' for='email'>Email:</label>
       <input 
+        className="login__input"
         value={email}
         placeholder="email"
         name="email"
@@ -47,7 +50,9 @@ export default function Login({state, setState}) {
         required
         type="text"
       />
-      <input 
+      <label className='login__label' for='password'>Password:</label>
+      <input
+        className="login__input"
         value={password}
         placeholder="password"
         name="password"
@@ -56,10 +61,10 @@ export default function Login({state, setState}) {
         type="password"
         onKeyPress={e => e.key === 'Enter' && login()}
       />
-      <button onClick={login}>Login</button>
+      <button className='login__button login__button--confirm' onClick={login}>Login</button>
       <br></br>
-      <h4>No Account? Sign Up</h4>
-      <button onClick={() => navigate('/register')}>Sign Up</button>
+      <h4 className='login__alternative'>No Account? Sign Up</h4>
+      <button className='login__button login__button--register' onClick={() => navigate('/register')}>Sign Up</button>
     </div>
   )
 }

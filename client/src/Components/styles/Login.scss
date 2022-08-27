@@ -1,0 +1,50 @@
+@import './Variables.scss';
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  .login__title {
+    align-self: center;
+    margin: 2rem 0 1rem 0;
+    font-size: 3rem;
+  }
+
+  .login__label {
+    margin-top: 1.5rem;
+    align-self: center;
+  }
+
+  .login__input {
+    width: 20%;
+    height:2rem;
+    align-self: center;
+    font-size: 1rem;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: .1rem;
+  }
+
+  .login__button {
+    font-size: 1rem;
+    padding: .5rem;
+    align-self: center;
+    border: solid 2px black;
+    border-radius: 10px;
+    margin: 1rem;
+  }
+
+  .login__alternative {
+    align-self: center;
+    margin-top: 2rem;
+  }
+
+  .login__button--confirm {
+    background-color: rgb(134, 241, 134);
+  }
+
+  .login__button--register {
+    background-color: rgb(109, 167, 214);
+    color: rgb(0, 0, 0);
+  }
+}

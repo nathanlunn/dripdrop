@@ -31,9 +31,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // import routers
 const userRouter = require('./routes/user-router.js');
+const productRouter = require('./routes/product-router.js');
 
 // use routers
 app.use('/api/users', userRouter);
+app.use('/api/products', productRouter);
 
 
 app.listen(PORT, () => {

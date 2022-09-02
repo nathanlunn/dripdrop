@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './styles/Product.scss';
 
 export default function Product({product}) {
   return (
-    <div>
+    <div className='product'>
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p>${product.price}.00</p>

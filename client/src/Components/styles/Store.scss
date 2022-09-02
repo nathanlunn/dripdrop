@@ -1,0 +1,10 @@
+@import './Variables.scss';
+
+.store {
+
+  .store__products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

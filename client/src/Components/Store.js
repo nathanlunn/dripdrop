@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import Product from './Product.js';
+import './styles/Store.scss';
 
 function Store({state, setState}) {
   useEffect(() => {
@@ -23,9 +24,11 @@ function Store({state, setState}) {
   });
 
   return (
-    <div>
+    <div className='store'>
       <h1>Store</h1>
-      {productList}
+      <div className='store__products'>
+        {productList}
+      </div>
     </div>
   );
 }

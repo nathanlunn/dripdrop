@@ -24,9 +24,9 @@ export default function Nav({state, setState}) {
       <div className="nav__linkDiv">
         <Link className="nav__button" to="/">Home</Link>
         <Link className="nav__button" to="/store">Store</Link>
-        {!state.user.name && <Link className="nav__button" to="/login">Login</Link>}
-        {!state.user.name && <Link className="nav__button" to="/register">Register</Link>}
-        {state.user.name && <button className="nav__button" onClick={logout}>Logout</button>}
+        {!state.user.name && <Link className="nav__button nav__button--login" to="/login">Login</Link>}
+        {!state.user.name && <Link className="nav__button nav__button--register" to="/register">Register</Link>}
+        {state.user.name && <button className="nav__button nav__button--logout" onClick={logout}>Logout</button>}
         {(state.user.owner || state.user.authorized) && <Link className="nav__button" to="/owner">Owners Dashboard</Link>}
       </div>
     </div>

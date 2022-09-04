@@ -27,4 +27,14 @@
     margin: .3rem;
     background-color: $mistyRose;
   }
+  .nav__button--login {
+    color: rgb(107, 159, 85);
+  }
+  .nav__button--register {
+    color: rgb(193, 165, 5);
+  }
+  .nav__button--logout {
+    color: rgb(225, 82, 82);
+    border: solid 0 black;
+  }
 }

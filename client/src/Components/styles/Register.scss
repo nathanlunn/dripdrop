@@ -41,11 +41,11 @@
   }
 
   .register__button--confirm {
-    background-color: rgb(134, 241, 134);
+    background-color: $register;
   }
 
   .register__button--login {
-    background-color: rgb(109, 167, 214);
+    background-color: $login;
     color: rgb(0, 0, 0);
   }
 }

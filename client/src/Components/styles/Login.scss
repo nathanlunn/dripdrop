@@ -1,5 +1,23 @@
 @import './Variables.scss';
 
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  } 
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.login__spinner {
+  width: 2rem;
+  height: 2rem;
+  border: .4rem solid #f3f3f3;
+  border-top: .4rem solid black;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
 .login {
   width: 100%;
   display: flex;
@@ -47,5 +65,13 @@
   .login__button--register {
     background-color: $register;
     color: rgb(0, 0, 0);
+  }
+
+  .login__error {
+    align-self: center;
+    margin-top: 2rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    color: $logout;
   }
 }

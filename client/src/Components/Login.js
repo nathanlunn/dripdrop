@@ -8,16 +8,22 @@ export default function Login({state, setState}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     
   }, [])
 
   const login = () => {
+    setLoading(true);
+    setErrorMessage('')
     axios.post('http://localhost:8080/api/users', {email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
-        setErrorMessage(res.data);
+        setTimeout(() => {
+          setLoading(false);
+          setErrorMessage(res.data);
+        }, 1000)
         return;
       }
       const user = res.data.rows[0];
@@ -30,15 +36,20 @@ export default function Login({state, setState}) {
         navigate('/store');
         return;
       }
-      setErrorMessage('Login Credentials Are Incorrect');
+      setTimeout(() => {
+        setLoading(false);
+        setErrorMessage('Login Credentials Are Incorrect');
+      }, 2000)
     })
     .catch(err => {
       console.error(err.message);
     })
   };
+
   return(
     <div className="login">
-      {errorMessage && <h3>{errorMessage}</h3>}
+      {loading && <div className='login__spinner'></div>}
+      {errorMessage && <h3 className='login__error'>{errorMessage}</h3>}
       <h2 className="login__title">Login</h2>
       <label className='login__label' for='email'>Email:</label>
       <input 

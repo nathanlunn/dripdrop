@@ -1,5 +1,25 @@
 @import './Variables.scss';
 
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  } 
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.register__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: .4rem solid #f3f3f3;
+  border-top: .4rem solid black;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+  align-self: center;
+  margin-top: 2rem;
+}
+
 .register {
   width: 100%;
   display: flex;
@@ -47,5 +67,13 @@
   .register__button--login {
     background-color: $login;
     color: rgb(0, 0, 0);
+  }
+
+  .register__error {
+    align-self: center;
+    margin-top: 2rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    color: $logout;
   }
 }

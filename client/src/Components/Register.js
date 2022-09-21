@@ -8,13 +8,19 @@ function Register({state, setState}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const register = () => {
+    setLoading(true);
+    setErrorMessage('');
     axios.post('http://localhost:8080/api/users/register', {name, email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
-        setErrorMessage(res.data);
+        setTimeout(() => {
+          setLoading(false);
+          setErrorMessage(res.data);
+        }, 1000)
         return;
       }
       const newUser = res.data.rows[0];
@@ -28,7 +34,8 @@ function Register({state, setState}) {
 
   return (
     <div className="register">
-      {errorMessage && <h4>{errorMessage}</h4>}
+      {loading && <div className='register__spinner'></div>}
+      {errorMessage && <h4 className='register__error'>{errorMessage}</h4>}
       <h2 className='register__title'>Register</h2>
       <label  className='register__label' for='name'>Name:</label>
       <input

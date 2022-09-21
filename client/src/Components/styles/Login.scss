@@ -10,12 +10,14 @@
 }
 
 .login__spinner {
-  width: 2rem;
-  height: 2rem;
+  width: 1rem;
+  height: 1rem;
   border: .4rem solid #f3f3f3;
   border-top: .4rem solid black;
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+  align-self: center;
+  margin-top: 2rem;
 }
 
 .login {

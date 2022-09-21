@@ -11,16 +11,33 @@ function Register({state, setState}) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const errorAfterLoading = (errMes) => {
+    setTimeout(() => {
+      setLoading(false);
+      setErrorMessage(errMes);
+    },1000);
+  }
+
+
   const register = () => {
     setLoading(true);
     setErrorMessage('');
+    if(name.length < 2) {
+      errorAfterLoading('Your Name Must Be Atleast Two Letters');
+      return;
+    }
+    if(!email.includes('@') || email.substring(email.length - 4, email.length) !== '.com') {
+      errorAfterLoading('invalid email address');
+      return;
+    }
+    if(password.length < 6) {
+      errorAfterLoading('your password must be atleast 6 characters long');
+      return;
+    }
     axios.post('http://localhost:8080/api/users/register', {name, email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
-        setTimeout(() => {
-          setLoading(false);
-          setErrorMessage(res.data);
-        }, 1000)
+        errorAfterLoading(res.data);
         return;
       }
       const newUser = res.data.rows[0];

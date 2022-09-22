@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import dripName from '../img/dripCharcoal.png';
 import './styles/Nav.scss';
+import cart from '../img/cart.png';
+
 
 export default function Nav({state, setState}) {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ export default function Nav({state, setState}) {
         {!state.user.name && <Link className="nav__button nav__button--login" to="/login">Login</Link>}
         {!state.user.name && <Link className="nav__button nav__button--register" to="/register">Register</Link>}
         {state.user.name && <button className="nav__button nav__button--logout" onClick={logout}>Logout</button>}
+        {(!state.user.owner && !state.user.authorized) && <img className='nav__cart' onClick={() => navigate('/cart')} src={cart}></img>}
         {(state.user.owner || state.user.authorized) && <Link className="nav__button" to="/owner">Owners Dashboard</Link>}
       </div>
     </div>

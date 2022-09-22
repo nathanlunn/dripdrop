@@ -10,9 +10,12 @@ export default function Login({state, setState}) {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    
-  }, [])
+  const errorAfterLoading = (errMes) => {
+    setTimeout(() => {
+      setLoading(false);
+      setErrorMessage(errMes);
+    },1000);
+  }
 
   const login = () => {
     setLoading(true);
@@ -20,10 +23,7 @@ export default function Login({state, setState}) {
     axios.post('http://localhost:8080/api/users', {email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
-        setTimeout(() => {
-          setLoading(false);
-          setErrorMessage(res.data);
-        }, 1000)
+        errorAfterLoading(res.data);
         return;
       }
       const user = res.data.rows[0];
@@ -36,10 +36,7 @@ export default function Login({state, setState}) {
         navigate('/store');
         return;
       }
-      setTimeout(() => {
-        setLoading(false);
-        setErrorMessage('Login Credentials Are Incorrect');
-      }, 2000)
+      errorAfterLoading('login credentials are incorrect');
     })
     .catch(err => {
       console.error(err.message);

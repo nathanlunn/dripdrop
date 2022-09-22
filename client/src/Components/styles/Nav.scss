@@ -37,4 +37,12 @@
     color: rgb(225, 82, 82);
     border: solid 0 black;
   }
+  .nav__cart{
+    width: 2rem;
+    height: 2rem;
+    margin: .2rem;
+  }
+  .nav__cart:hover {
+    cursor: pointer;
+  }
 }

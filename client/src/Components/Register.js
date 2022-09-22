@@ -18,7 +18,6 @@ function Register({state, setState}) {
     },1000);
   }
 
-
   const register = () => {
     setLoading(true);
     setErrorMessage('');

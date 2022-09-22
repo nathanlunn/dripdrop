@@ -6,6 +6,7 @@ import Nav from './Nav';
 import Login from './Login';
 import Register from './Register';
 import Store from './Store';
+import Cart from './Cart';
 import OwnerDashboard from './OwnerDashboard';
 import ErrorPage from './ErrorPage';
 import './styles/App.scss';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/login" element={<Login state={state} setState={setState}/>}/>
           <Route path="/register" element={<Register state={state} setState={setState}/>}/>
           <Route path="/store" element={<Store state={state} setState={setState} />}/>
+          <Route path='/cart' element={<Cart />}/>
           <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>
           <Route path="*" element={<ErrorPage />}/>
         </Routes>

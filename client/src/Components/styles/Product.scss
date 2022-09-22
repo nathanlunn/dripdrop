@@ -1,8 +1,38 @@
 @import './Variables.scss';
 
 .product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15rem;
+  height: 15rem;
   border: solid 1px black;
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem;
-  width: 20%;
+
+  .product__buttonDiv {
+    display: flex;
+    justify-content: flex-end;
+
+    .product__button {
+      padding: .4rem;
+      border: 2px solid $charcoal;
+      border-radius: 5px;
+      margin: .1rem;
+    }
+
+    .product__button:hover {
+      cursor: pointer;
+    }
+
+    .product__button--buyNow {
+      background-color: rgba(190, 229, 165, 0.505);
+    }
+
+    .product__button--addToCart {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: rgba(246, 238, 176, 0.506);
+    }
+  }
 }

@@ -23,6 +23,7 @@ export default function Nav({state, setState}) {
   return (
     <div className="nav">
       <img className="nav__logo" src={dripName}/>
+      {state.user.name && <h2>Welcome, {state.user.name}</h2>}
       <div className="nav__linkDiv">
         <Link className="nav__button" to="/">Home</Link>
         <Link className="nav__button" to="/store">Store</Link>

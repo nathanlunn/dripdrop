@@ -35,5 +35,49 @@
       height: 1.5rem;
       background-color: rgba(246, 238, 176, 0.506);
     }
+  }  
+
+  .product__addingToCart {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 10rem;
+    height: 10rem;
+    background-color: $mistyRose;
+    border: solid 2px $charcoal;
+
+    .product__additionContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .product__amountChange {
+        padding: .2rem;
+        width: 2.5rem;
+        font-size: 1rem;
+        background-color: $englishViolet;
+        color: white;
+        border: solid 1px $charcoal;
+      }
+      .product__amountChange:hover {
+        cursor: pointer;
+      }
+    }
+
+    .product__confirmContainer {
+      display: flex;
+      justify-content: space-around;
+
+      .product__confirmCartAdd {
+        width: 2rem;
+        height: 2rem;
+      }
+      
+      .product__cancelCartAdd {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
   }
 }

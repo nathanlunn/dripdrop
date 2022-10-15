@@ -46,6 +46,20 @@
     padding: .1rem;
   }
 
+  .login__passwordVisibility {
+    align-self: center;
+    font-size: 1.3rem;
+    margin-top: .3rem;
+  }
+
+  .login__passwordVisibility:hover {
+    cursor: pointer;
+  }
+
+  .login__invisible {
+    color: $charcoal;
+  }
+
   .login__button {
     font-size: 1rem;
     padding: .5rem;
@@ -76,4 +90,5 @@
     font-size: 1.5rem;
     color: $logout;
   }
+  
 }

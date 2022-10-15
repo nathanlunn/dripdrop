@@ -11,7 +11,7 @@ export default function Product({product}) {
   const [cartAmount, setCartAmount] = useState(1);
 
   const addToCart = () => {
-
+    
   }
 
   return (
@@ -33,7 +33,7 @@ export default function Product({product}) {
               }}>-</button>
             <div className='product__cartAmount'>{cartAmount}</div>
             <button className='product__moreAmount' onClick={() => {setCartAmount(cartAmount + 1)}}>+</button>
-            <img className='product__confirmCartAdd' src={check}></img>
+            <img className='product__confirmCartAdd' src={check} onClick={addToCart}></img>
             <img className='product__cancelCartAdd' src={cancel} onClick={() => setAddingToCart(false)}></img>
           </div>
         )}

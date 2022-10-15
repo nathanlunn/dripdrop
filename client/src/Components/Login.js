@@ -9,6 +9,7 @@ export default function Login({state, setState}) {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [visiblePassword, setVisiblePassword] = useState(false);
 
   const errorAfterLoading = (errMes) => {
     setTimeout(() => {
@@ -59,16 +60,20 @@ export default function Login({state, setState}) {
         type="text"
       />
       <label className='login__label' for='password'>Password:</label>
-      <input
-        className="login__input"
-        value={password}
-        placeholder="password"
-        name="password"
-        onChange={e => setPassword(e.target.value)}
-        required
-        type="password"
-        onKeyPress={e => e.key === 'Enter' && login()}
-      />
+        <input
+          className="login__input"
+          value={password}
+          placeholder="password"
+          name="password"
+          onChange={e => setPassword(e.target.value)}
+          required
+          type={visiblePassword ? "text" : "password"}
+          onKeyPress={e => e.key === 'Enter' && login()}
+        />
+        {visiblePassword ?  
+          <i class="fa-solid fa-eye-slash login__passwordVisibility login__invisible" onClick={() => setVisiblePassword(false)}></i> :
+          <i class="fa-solid fa-eye login__passwordVisibility" onClick={() => setVisiblePassword(true)}></i>
+        }
       <button className='login__button login__button--confirm' onClick={login}>Login</button>
       <br></br>
       <h4 className='login__alternative'>No Account? Sign Up</h4>

@@ -19,6 +19,7 @@ function Store({state, setState}) {
     return (
       <Product 
         product={product}
+        state={state}
       />
     )
   });

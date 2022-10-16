@@ -16,4 +16,8 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/cartAddition', (req, res) => {
+  console.log('connection');
+})
+
 module.exports = router;

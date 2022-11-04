@@ -10,6 +10,7 @@ export default function Product({product, state}) {
   const navigate = useNavigate();
   const [addingToCart, setAddingToCart] = useState(false);
   const [cartAmount, setCartAmount] = useState(1);
+  const [noUser, setNoUser] = useState(false);
 
   const addToCart = () => {
     if (cartAmount < 1) {
@@ -17,8 +18,13 @@ export default function Product({product, state}) {
       return;
     }
     axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
-    .then(data => {
-      console.log(data);
+    .then(res => {
+      if (res.data === 'no user') {
+        setNoUser(true);
+        setTimeout(() => {
+          setNoUser(false);
+        },1800)
+      }
     })
     .catch(err => {
       console.error(err.message);
@@ -27,6 +33,12 @@ export default function Product({product, state}) {
 
   return (
     <div className='product'>
+      {noUser && (
+        <div className='product__noUser'>
+          <h3>Please Login</h3>
+          <h3>to Create a Cart</h3>
+        </div>
+      )}
       <div className='product__info'>
         <h2>{product.name}</h2>
         <p>{product.description}</p>

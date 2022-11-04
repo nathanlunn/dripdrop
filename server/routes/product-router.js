@@ -18,8 +18,12 @@ router.get('/', (req, res) => {
 
 router.post('/addcart', (req, res) => {
   const cartAmount = req.body.cartAmount;
-  console.log(cartAmount);
-  res.send('nice');
+  const productID = req.body.productID;
+  const userID = req.body.userID;
+  if (!userID) {
+    res.send('no user');
+  }
+  res.send(`userID: ${userID}, productID: ${productID}, cartAmount: ${cartAmount} `);
 })
 
 module.exports = router;

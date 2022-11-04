@@ -16,8 +16,10 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/cartAddition', (req, res) => {
-  console.log('connection');
+router.post('/addcart', (req, res) => {
+  const cartAmount = req.body.cartAmount;
+  console.log(cartAmount);
+  res.send('nice');
 })
 
 module.exports = router;

@@ -16,7 +16,7 @@ export default function Product({product, state}) {
       setAddingToCart(false);
       return;
     }
-    axios.post('http://localhost:8080/api/products/cartAddition', {userID: state.user.id, productID: product.id, cartAmount})
+    axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
     .then(data => {
       console.log(data);
     })

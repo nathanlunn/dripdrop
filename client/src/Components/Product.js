@@ -20,6 +20,7 @@ export default function Product({product, state}) {
     axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
     .then(res => {
       if (res.data === 'no user') {
+        setAddingToCart(false);
         setNoUser(true);
         setTimeout(() => {
           setNoUser(false);

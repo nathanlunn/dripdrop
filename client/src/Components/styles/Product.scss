@@ -82,6 +82,15 @@
   }
 
   .product__noUser {
+    display: flex;
+    flex-direction: column;
     position: absolute;
+    height: 20rem;
+    width: 20rem;
+    border: solid 2px black;
+    background-color: $register;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
   }
 }

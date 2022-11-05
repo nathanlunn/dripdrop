@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './styles/Product.scss';
 import cart from '../img/cart.png';
@@ -6,11 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import check from '../img/check.png';
 import cancel from '../img/cancel.png';
 
-export default function Product({product, state}) {
+export default function Product({product, state, setState}) {
   const navigate = useNavigate();
   const [addingToCart, setAddingToCart] = useState(false);
   const [cartAmount, setCartAmount] = useState(1);
   const [noUser, setNoUser] = useState(false);
+
+  useEffect(() => {
+    setAddingToCart(false);
+  }, [state.off])
 
   const addToCart = () => {
     if (cartAmount < 1) {
@@ -25,7 +29,9 @@ export default function Product({product, state}) {
         setTimeout(() => {
           setNoUser(false);
         },1800)
+        return;
       }
+      console.log(res.data);
     })
     .catch(err => {
       console.error(err.message);
@@ -69,8 +75,14 @@ export default function Product({product, state}) {
           </div>
         )}
         <img src={cart} className='product__button product__button--addToCart' onClick={() => {
-          setAddingToCart(true);
-          setCartAmount(1);
+          setState(prev => ({...prev, off: true}));
+          setTimeout(() => {
+            setState(prev => ({...prev, off: false}));
+          },10);
+          setTimeout(() => {
+            setAddingToCart(true);
+            setCartAmount(1);
+          }, 20);
           }}></img>
       </div>
     </div>

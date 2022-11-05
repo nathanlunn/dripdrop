@@ -17,6 +17,7 @@ function App() {
   const [state, setState] = useState({
     user: {},
     products: [],
+    off: false,
   });
 
   useEffect(() => {

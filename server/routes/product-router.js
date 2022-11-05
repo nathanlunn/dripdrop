@@ -35,17 +35,16 @@ router.post('/addcart', (req, res) => {
       })
       .catch(err => {
         console.error(err.message);
-        return;
       })
     }
-    db.query('INSERT INTO user_product_relation (user_id, product_id, status, product_quantity) VALUES ($1, $2, $3, $4);', [userID, productID, status, cartAmount])
+    db.query('INSERT INTO user_product_relation (user_id, product_id, status, product_quantity) VALUES ($1, $2, $3, $4) RETURNING *;', [userID, productID, status, cartAmount])
     .then(res => {
-      console.log(res.rows);
+      res.rows.push('new');
+      res(res.rows);
       return;
     })
     .catch(err => {
       console.error(err.message);
-      return;
     })
   })
   .catch(err => {

@@ -20,6 +20,8 @@ router.post('/addcart', (req, res) => {
   const cartAmount = parseInt(req.body.cartAmount);
   const productID = parseInt(req.body.productID);
   const userID = parseInt(req.body.userID);
+  const status = "cart";
+  // console.log(`userID: ${userID}, productID: ${productID}, cartAmount: ${cartAmount} `);
   if (!userID) {
     res.send('no user');
   }
@@ -36,20 +38,19 @@ router.post('/addcart', (req, res) => {
         return;
       })
     }
-    db.query('INSERT INTO user_product_relation (user_id, product_id, product_quantity) VALUES ($1, $2, $3);' [userID, productID, cartAmount])
+    db.query('INSERT INTO user_product_relation (user_id, product_id, status, product_quantity) VALUES ($1, $2, $3, $4);', [userID, productID, status, cartAmount])
     .then(res => {
       console.log(res.rows);
       return;
     })
     .catch(err => {
-      console.error(err);
+      console.error(err.message);
       return;
     })
   })
   .catch(err => {
     console.error(err.message);
   })
-  res.send(`userID: ${userID}, productID: ${productID}, cartAmount: ${cartAmount} `);
 })
 
 module.exports = router;

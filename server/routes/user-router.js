@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
     
     db.query('SELECT * FROM users WHERE email = $1', [email])
     .then(data => {
-      if (data.rows.length > 0) {
+      if (data.rows.length) {
         return res.send('That Email is Already In Use');        
       }      
       db.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;', [name, email, hashedPassword])

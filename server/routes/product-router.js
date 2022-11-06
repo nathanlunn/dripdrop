@@ -26,26 +26,27 @@ router.post('/addcart', (req, res) => {
     res.send('no user');
   }
   db.query('SELECT * FROM user_product_relation WHERE user_id = $1 AND product_id = $2', [userID, productID])
-  .then(res => {
-    if (res.rows.length) {
-      db.query('UPDATE user_product_relation SET status = "cart", product_quantity = product_quantity + $1 WHERE user_id = $2 AND product_id = $3 RETURNING *;', [cartAmount, userID, productID])
-      .then(res => {
-        console.log(res.rows);
+  .then(data => {
+    console.log(data.rows);
+    if (data.rows.length) {
+      db.query('UPDATE user_product_relation SET status = $4, product_quantity = product_quantity + $1 WHERE user_id = $2 AND product_id = $3 RETURNING *;', [cartAmount, userID, productID, status])
+      .then(data => {
+        console.log(data.rows);
         return;
       })
       .catch(err => {
         console.error(err.message);
       })
-    }
-    db.query('INSERT INTO user_product_relation (user_id, product_id, status, product_quantity) VALUES ($1, $2, $3, $4) RETURNING *;', [userID, productID, status, cartAmount])
-    .then(res => {
-      res.rows.push('new');
-      res(res.rows);
+    } else 
+    {db.query('INSERT INTO user_product_relation (user_id, product_id, status, product_quantity) VALUES ($1, $2, $3, $4) RETURNING *;', [userID, productID, status, cartAmount])
+    .then(data => {
+      data.rows.push('new');
+      res.send(data.rows);
       return;
     })
     .catch(err => {
       console.error(err.message);
-    })
+    })}
   })
   .catch(err => {
     console.error(err.message);

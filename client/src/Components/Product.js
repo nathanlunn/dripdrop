@@ -8,23 +8,18 @@ import cancel from '../img/cancel.png';
 
 export default function Product({product, state, setState}) {
   const navigate = useNavigate();
-  const [addingToCart, setAddingToCart] = useState(false);
   const [cartAmount, setCartAmount] = useState(1);
   const [noUser, setNoUser] = useState(false);
 
-  useEffect(() => {
-    setAddingToCart(false);
-  }, [state.off])
-
   const addToCart = () => {
     if (cartAmount < 1) {
-      setAddingToCart(false);
+      setState(prev => ({...prev, cartAdd: 0}))
       return;
     }
     axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
     .then(res => {
       if (res.data === 'no user') {
-        setAddingToCart(false);
+        setState(prev => ({...prev, cartAdd: 0}))
         setNoUser(true);
         setTimeout(() => {
           setNoUser(false);
@@ -54,7 +49,7 @@ export default function Product({product, state, setState}) {
       </div>
       <div className='product__buttonDiv'>
         <button className='product__button product__button--buyNow' onClick={() => navigate('/purchase')}>BUY NOW</button>
-        {addingToCart && (
+        {(state.cartAdd === product.id) && (
           <div className='product__addingToCart'>
             <div className='product__additionContainer'>
               <button className='product__amountChange' onClick={() => {
@@ -68,21 +63,15 @@ export default function Product({product, state, setState}) {
             <div className='product__confirmContainer'>
               <img className='product__confirmCartAdd' src={check} onClick={addToCart}></img>
               <img className='product__cancelCartAdd' src={cancel} onClick={() => {
-                setAddingToCart(false);
+                setState(prev => ({...prev, cartAdd: 0}))
                 setCartAmount(1);
               }}></img>
             </div>
           </div>
         )}
         <img src={cart} className='product__button product__button--addToCart' onClick={() => {
-          setState(prev => ({...prev, off: true}));
-          setTimeout(() => {
-            setState(prev => ({...prev, off: false}));
-          },10);
-          setTimeout(() => {
-            setAddingToCart(true);
+            setState(prev => ({...prev, cartAdd: product.id}))
             setCartAmount(1);
-          }, 20);
           }}></img>
       </div>
     </div>

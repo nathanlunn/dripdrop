@@ -6,6 +6,18 @@
   align-items: center;
   max-width: 1200px;
 
+  .store__confirmMessage {
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 70%;
+    background-color: $blackShadows;
+    border: 2px solid black;
+  }
+
   .store__products {
     width: 90%;
     display: flex;

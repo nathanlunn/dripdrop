@@ -31,7 +31,7 @@ function Store({state, setState}) {
   return (
     <div className='store'>
       {confirmMessage && (
-        <div>
+        <div className='store__confirmMessage'>
           <h3>{confirmMessage}</h3>
         </div>
       )}

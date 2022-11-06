@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Product from './Product.js';
 import './styles/Store.scss';
 
 function Store({state, setState}) {
+  const [confirmMessage, setConfirmMessage] = useState('');
+
   useEffect(() => {
     axios.get('http://localhost:8080/api/products')
     .then(res => {
@@ -21,12 +23,18 @@ function Store({state, setState}) {
         product={product}
         state={state}
         setState={setState}
+        setConfirmMessage={setConfirmMessage}
       />
     )
   });
 
   return (
     <div className='store'>
+      {confirmMessage && (
+        <div>
+          <h3>{confirmMessage}</h3>
+        </div>
+      )}
       <h1>Store</h1>
       <div className='store__products'>
         {productList}

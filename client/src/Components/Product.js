@@ -6,27 +6,48 @@ import { useNavigate } from 'react-router-dom';
 import check from '../img/check.png';
 import cancel from '../img/cancel.png';
 
-export default function Product({product, state, setState}) {
+export default function Product({product, state, setState, setConfirmMessage}) {
   const navigate = useNavigate();
   const [cartAmount, setCartAmount] = useState(1);
   const [noUser, setNoUser] = useState(false);
 
   const addToCart = () => {
     if (cartAmount < 1) {
-      setState(prev => ({...prev, cartAdd: 0}))
+      setState(prev => ({...prev, cartAdd: 0}));
       return;
     }
     axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
     .then(res => {
       if (res.data === 'no user') {
-        setState(prev => ({...prev, cartAdd: 0}))
+        setState(prev => ({...prev, cartAdd: 0}));
         setNoUser(true);
         setTimeout(() => {
           setNoUser(false);
         },1800)
         return;
       }
-      console.log(res.data);
+      if (res.data[1] === 'new') {
+        setState(prev => ({...prev, cartAdd: 0}));
+        if (res.data[0].product_quantity < 2) {
+          setConfirmMessage(`${product.name} has been added to your cart.`);
+        } else {
+          setConfirmMessage(`${res.data[0].product_quantity} units of ${product.name} has been added to your cart`);
+        }
+        setTimeout(() => {
+          setConfirmMessage('');
+        }, 2500)
+      }
+      if (res.data[1] === 'update') {
+        setState(prev => ({...prev, cartAdd: 0}));
+        if (cartAmount < 2) {
+          setConfirmMessage(`${product.name} has been added to your cart again, you now have ${res.data[0].product_quantity} in your cart.`);
+        } else {
+          setConfirmMessage(`${cartAmount} of ${product.name} has been added to your cart, you now have ${res.data[0].product_quantity} in your cart.`);
+        }
+        setTimeout(() => {
+          setConfirmMessage('');
+        }, 2500)
+      }
     })
     .catch(err => {
       console.error(err.message);

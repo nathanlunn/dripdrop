@@ -5,18 +5,6 @@ import './styles/Store.scss';
 
 function Store({state, setState}) {
   const [confirmMessage, setConfirmMessage] = useState('');
-  console.log(state);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/products')
-    .then(res => {
-      console.log(res.data);
-      setState(prev => ({...prev, products: res.data}))
-    })
-    .catch(err => {
-      console.error(err.message);
-    })
-  }, [])
 
   const productList = state.products.map(product => {
     return (

@@ -18,6 +18,7 @@ function App() {
     user: {},
     products: [],
     cartAdd: 0,
+    cartLogs: []
   });
 
   useEffect(() => {
@@ -26,6 +27,14 @@ function App() {
       if(res.data.loggedIn) {
         setState(prev => ({...prev, user: res.data.user}));
       }
+    })
+    .catch(err => {
+      console.error(err.message);
+    })
+
+    axios.get('http://localhost:8080/api/products')
+    .then(res => {
+      setState(prev => ({...prev, products: res.data}))
     })
     .catch(err => {
       console.error(err.message);

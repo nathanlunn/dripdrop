@@ -40,8 +40,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login state={state} setState={setState}/>}/>
           <Route path="/register" element={<Register state={state} setState={setState}/>}/>
-          <Route path="/store" element={<Store state={state} setState={setState} />}/>
-          <Route path='/cart' element={<Cart />}/>
+          <Route path="/store" element={<Store state={state} setState={setState}/>}/>
+          <Route path='/cart' element={<Cart state={state} setState={setState}/>}/>
           <Route path="/owner" element={<OwnerDashboard  state={state}/>}/>
           <Route path="*" element={<ErrorPage />}/>
         </Routes>

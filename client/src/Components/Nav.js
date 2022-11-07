@@ -30,7 +30,7 @@ export default function Nav({state, setState}) {
         {!state.user.name && <Link className="nav__button nav__button--login" to="/login">Login</Link>}
         {!state.user.name && <Link className="nav__button nav__button--register" to="/register">Register</Link>}
         {state.user.name && <button className="nav__button nav__button--logout" onClick={logout}>Logout</button>}
-        {(!state.user.owner && !state.user.authorized) && <img className='nav__cart' onClick={() => navigate('/cart')} src={cart}></img>}
+        {(!state.user.owner && !state.user.authorized && state.user.id) && <img className='nav__cart' onClick={() => navigate('/cart')} src={cart}></img>}
         {(state.user.owner || state.user.authorized) && <Link className="nav__button" to="/owner">Owners Dashboard</Link>}
       </div>
     </div>

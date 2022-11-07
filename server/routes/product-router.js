@@ -53,6 +53,18 @@ router.post('/addcart', (req, res) => {
   .catch(err => {
     console.error(err.message);
   })
+
+})
+
+router.post('/cart', (req, res) => {
+  const userID = req.body.userID;
+  db.query('SELECT * FROM user_product_relation WHERE user_id = $1', [userID])
+  .then(data => {
+    res.send(data.rows);
+  })
+  .catch(err => {
+    console.error(err.message);
+  })
 })
 
 module.exports = router;

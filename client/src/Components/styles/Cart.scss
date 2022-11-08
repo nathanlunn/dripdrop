@@ -1,0 +1,10 @@
+@import './Variables.scss';
+
+.cart {
+  position: fixed;
+  width: 80%;
+  border: 2px solid black;
+  margin: 2rem;
+  bottom: 0;
+  top: 5rem;
+}

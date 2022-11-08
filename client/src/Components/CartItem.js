@@ -7,7 +7,7 @@ export default function CartItem({quantity, productID, state, setState}) {
 
   return (
     <div>
-      <h5></h5>
+      <h5>{product.name}</h5>
     </div>
   )
 }

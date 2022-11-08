@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import CartItem from './CartItem.js';
+import './styles/Cart.scss';
 
 export default function Cart({state, setState}) {
   useEffect(() => {
@@ -27,8 +28,8 @@ export default function Cart({state, setState}) {
   })
 
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className='cart'>
+      <h1>Your Cart</h1>
       {cartList}
     </div>
   )

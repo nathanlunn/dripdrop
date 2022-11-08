@@ -14,8 +14,6 @@ export default function Cart({state, setState}) {
     })
   }, []);
 
-  console.log(state.cartLogs);
-
   const cartList = state.cartLogs.map(cartItem => {
     return (
       <CartItem 
@@ -28,9 +26,11 @@ export default function Cart({state, setState}) {
   })
 
   return (
-    <div className='cart'>
+    <>
       <h1>Your Cart</h1>
-      {cartList}
-    </div>
+      <div className='cart'>
+        {cartList}
+      </div>
+    </>
   )
 }

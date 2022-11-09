@@ -33,7 +33,7 @@ export default function CartItem({quantity, productID, state, setState}) {
   }
 
   const deleteCartItem = () => {
-
+    axios.post('http://localhost:8080/api/products/deletecartitem', {userID: state.user.id, productID})
   }
 
   return (
@@ -42,11 +42,11 @@ export default function CartItem({quantity, productID, state, setState}) {
         <div className='cartItem__confirmDeleteContainer'>
           <h3>Are You Sure You Want to Delete This Item From Your Cart</h3>
           <button
-            className='cartItem__yesToDelete'
+            className='cartItem__button cartItem__button--yesToDelete'
             onClick={deleteCartItem}
           >YES</button>
           <button
-            className='cartItem__noToDelete'
+            className='cartItem__button cartItem__button--noToDelete'
             onClick={() => setConfirmDelete(false)}
           >NO</button>
         </div>
@@ -62,7 +62,7 @@ export default function CartItem({quantity, productID, state, setState}) {
           className='cartItem__button cartItem__button--plus'
           onClick={plusCart}
         >+</button>
-        <img className='product__cancelCartAdd' src={cancel} onClick={() => setConfirmDelete(true)}></img>
+        <img className='cartItem__button cartItem__button--delete' src={cancel} onClick={() => setConfirmDelete(true)}></img>
       </div>
     </div>
   )

@@ -1,2 +1,17 @@
 @import './Variables.scss';
 
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid black;
+
+  .cartItem__quantityContainer {
+    display: flex;
+
+    .cartItem__button {
+      height: 1rem;
+      weight: 1rem;
+    }
+  }
+}

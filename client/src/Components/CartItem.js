@@ -4,6 +4,7 @@ import './styles/CartItem.scss';
 
 export default function CartItem({quantity, productID, state, setState}) {
   const product = state.products.find(product => product.id === productID);
+  const [productQuantity, setProductQuantity] = setState(quantity);
 
   const minusCart = () => {
     axios.post('http://localhost:8080/api/products/addcart', {productID, userID: state.user.id, cartAmount: -1})
@@ -17,6 +18,7 @@ export default function CartItem({quantity, productID, state, setState}) {
           className='cartItem__button cartItem__button--minus'
           onClick={minusCart}
         >-</button>
+        {/* <div>{cartAmount}</div> */}
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import './styles/CartItem.scss';
+import cancel from '../img/cancel.png';
 
 export default function CartItem({quantity, productID, state, setState}) {
   const [productQuantity, setProductQuantity] = useState(0);
@@ -31,8 +32,25 @@ export default function CartItem({quantity, productID, state, setState}) {
     setProductQuantity(productQuantity + 1);
   }
 
+  const deleteCartItem = () => {
+
+  }
+
   return (
     <div className='cartItem'>
+      {confirmDelete && (
+        <div className='cartItem__confirmDeleteContainer'>
+          <h3>Are You Sure You Want to Delete This Item From Your Cart</h3>
+          <button
+            className='cartItem__yesToDelete'
+            onClick={deleteCartItem}
+          >YES</button>
+          <button
+            className='cartItem__noToDelete'
+            onClick={() => setConfirmDelete(false)}
+          >NO</button>
+        </div>
+      )}
       <h3>{product.name}</h3>
       <div className='cartItem__quantityContainer'>
         <button
@@ -44,6 +62,7 @@ export default function CartItem({quantity, productID, state, setState}) {
           className='cartItem__button cartItem__button--plus'
           onClick={plusCart}
         >+</button>
+        <img className='product__cancelCartAdd' src={cancel} onClick={() => setConfirmDelete(true)}></img>
       </div>
     </div>
   )

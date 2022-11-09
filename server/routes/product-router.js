@@ -67,4 +67,16 @@ router.post('/cart', (req, res) => {
   })
 })
 
+router.post('/cartquantity', (req, res) => {
+  const userID = req.body.userID;
+  const productID = req.body.productID;
+  db.query('SELECT product_quantity FROM user_product_relation WHERE user_id = $1 AND product_id = $2', [userID, productID])
+  .then(data => {
+    res.send(data.rows);
+  })
+  .catch(err => {
+    console.error(err.message);
+  })
+})
+
 module.exports = router;

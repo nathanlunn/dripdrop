@@ -8,7 +8,8 @@ function Store({state, setState}) {
 
   const productList = state.products.map(product => {
     return (
-      <Product 
+      <Product
+        key={product.id}
         product={product}
         state={state}
         setState={setState}

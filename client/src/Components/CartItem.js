@@ -3,11 +3,32 @@ import React, {useEffect, useState} from 'react';
 import './styles/CartItem.scss';
 
 export default function CartItem({quantity, productID, state, setState}) {
+  const [productQuantity, setProductQuantity] = useState(0);
+  useEffect(() => {
+    axios.post('http://localhost:8080/api/products/cartquantity', {userID: state.user.id, productID})
+    .then(res => {
+      setProductQuantity(res.data[0].product_quantity);
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
+  }, [])
+
   const product = state.products.find(product => product.id === productID);
-  const [productQuantity, setProductQuantity] = setState(quantity);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const minusCart = () => {
+    if (productQuantity === 1) {
+      setConfirmDelete(true);
+      return;
+    }
     axios.post('http://localhost:8080/api/products/addcart', {productID, userID: state.user.id, cartAmount: -1})
+    setProductQuantity(productQuantity - 1);
+  }
+
+  const plusCart = () => {
+    axios.post('http://localhost:8080/api/products/addcart', {productID, userID: state.user.id, cartAmount: 1})
+    setProductQuantity(productQuantity + 1);
   }
 
   return (
@@ -18,7 +39,11 @@ export default function CartItem({quantity, productID, state, setState}) {
           className='cartItem__button cartItem__button--minus'
           onClick={minusCart}
         >-</button>
-        {/* <div>{cartAmount}</div> */}
+        <div>{productQuantity}</div>
+        <button
+          className='cartItem__button cartItem__button--plus'
+          onClick={plusCart}
+        >+</button>
       </div>
     </div>
   )

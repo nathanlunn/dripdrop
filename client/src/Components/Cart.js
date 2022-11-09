@@ -17,7 +17,7 @@ export default function Cart({state, setState}) {
   const cartList = state.cartLogs.map(cartItem => {
     return (
       <CartItem 
-        quantity={cartItem.product_quantity}
+        key={cartItem.id}
         productID={cartItem.product_id}
         state={state}
         setState={setState}

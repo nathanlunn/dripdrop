@@ -27,7 +27,7 @@ export default function Cart({state, setState}) {
 
   return (
     <>
-      <h1>Your Cart</h1>
+      <h1>{state.user.name}'s Cart</h1>
       <div className='cart'>
         {cartList}
       </div>

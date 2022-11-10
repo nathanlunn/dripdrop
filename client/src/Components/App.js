@@ -22,7 +22,7 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/users')
+    axios.get('https://drip-drop.herokuapp.com/api/users')
     .then(res => {
       if(res.data.loggedIn) {
         setState(prev => ({...prev, user: res.data.user}));
@@ -32,7 +32,7 @@ function App() {
       console.error(err.message);
     })
 
-    axios.get('http://localhost:8080/api/products')
+    axios.get('https://drip-drop.herokuapp.com/api/products')
     .then(res => {
       setState(prev => ({...prev, products: res.data}))
     })

@@ -5,7 +5,7 @@ import './styles/Cart.scss';
 
 export default function Cart({state, setState}) {
   useEffect(() => {
-    axios.post('http://localhost:8080/api/products/cart', {userID: state.user.id})
+    axios.post('https://drip-drop.herokuapp.com/api/products/cart', {userID: state.user.id})
     .then(res => {
       setState(prev => ({...prev, cartLogs: res.data}))
     })

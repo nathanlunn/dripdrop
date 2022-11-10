@@ -21,7 +21,7 @@ export default function Login({state, setState}) {
   const login = () => {
     setLoading(true);
     setErrorMessage('')
-    axios.post('http://localhost:8080/api/users', {email, password})
+    axios.post('https://drip-drop.herokuapp.com/api/users', {email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
         errorAfterLoading(res.data);

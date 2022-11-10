@@ -16,7 +16,7 @@ export default function Product({product, state, setState, setConfirmMessage}) {
       setState(prev => ({...prev, cartAdd: 0}));
       return;
     }
-    axios.post('http://localhost:8080/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
+    axios.post('https://drip-drop.herokuapp.com/api/products/addcart', {userID: state.user.id, productID: product.id, cartAmount})
     .then(res => {
       if (res.data === 'no user') {
         setState(prev => ({...prev, cartAdd: 0}));

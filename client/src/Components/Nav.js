@@ -10,7 +10,7 @@ export default function Nav({state, setState}) {
   const navigate = useNavigate();
 
   const logout = () => {
-    axios.get('http://localhost:8080/api/users/logout')
+    axios.get('https://drip-drop.herokuapp.com/api/users/logout')
     .then(res => {
       setState(prev => ({...prev, user: {} }));
       navigate('/login');

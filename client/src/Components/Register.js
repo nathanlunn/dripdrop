@@ -33,7 +33,7 @@ function Register({state, setState}) {
       errorAfterLoading('your password must be atleast 6 characters long');
       return;
     }
-    axios.post('http://localhost:8080/api/users/register', {name, email, password})
+    axios.post('https://drip-drop.herokuapp.com/api/users/register', {name, email, password})
     .then(res => {
       if (typeof(res.data) === 'string') {
         errorAfterLoading(res.data);

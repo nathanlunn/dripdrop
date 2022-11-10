@@ -6,7 +6,7 @@ import cancel from '../img/cancel.png';
 export default function CartItem({quantity, productID, state, setState}) {
   const [productQuantity, setProductQuantity] = useState(0);
   useEffect(() => {
-    axios.post('http://localhost:8080/api/products/cartquantity', {userID: state.user.id, productID})
+    axios.post('https://drip-drop.herokuapp.com/api/products/cartquantity', {userID: state.user.id, productID})
     .then(res => {
       setProductQuantity(res.data[0].product_quantity);
     })
@@ -23,17 +23,17 @@ export default function CartItem({quantity, productID, state, setState}) {
       setConfirmDelete(true);
       return;
     }
-    axios.post('http://localhost:8080/api/products/addcart', {productID, userID: state.user.id, cartAmount: -1})
+    axios.post('https://drip-drop.herokuapp.com/api/products/addcart', {productID, userID: state.user.id, cartAmount: -1})
     setProductQuantity(productQuantity - 1);
   }
 
   const plusCart = () => {
-    axios.post('http://localhost:8080/api/products/addcart', {productID, userID: state.user.id, cartAmount: 1})
+    axios.post('https://drip-drop.herokuapp.com/api/products/addcart', {productID, userID: state.user.id, cartAmount: 1})
     setProductQuantity(productQuantity + 1);
   }
 
   const deleteCartItem = () => {
-    axios.post('http://localhost:8080/api/products/deletecartitem', {userID: state.user.id, productID})
+    axios.post('https://drip-drop.herokuapp.com/api/products/deletecartitem', {userID: state.user.id, productID})
   }
 
   return (
